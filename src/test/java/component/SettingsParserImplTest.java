@@ -23,7 +23,7 @@ class SettingsParserImplTest {
         String settingsFileContent = "titleFormat=Day\nGitHub=https://github.io/\ntableFormat=>\nbodyFormat=# {sub}\n";
         SettingsParserImpl sut = new SettingsParserImpl(settingsFileContent);
 
-        Settings settings = sut.getParsedSettings(settingsFileContent);
+        Settings settings = sut.getParsedSettings();
 
         assertThat(settings.toString()).contains("Day","https://github.io/",">","# {sub}");
     }
@@ -34,7 +34,7 @@ class SettingsParserImplTest {
         String settingsFileContent = "titleFormat=Day\nGitHub=none\ntableFormat=>\nbodyFormat=# {sub}\n";
         SettingsParserImpl sut = new SettingsParserImpl(settingsFileContent);
 
-        Settings settings = sut.getParsedSettings(settingsFileContent);
+        Settings settings = sut.getParsedSettings();
 
         assertThat(settings.toString()).contains("Day","none",">","# {sub}");
     }
@@ -45,7 +45,7 @@ class SettingsParserImplTest {
         String settingsFileContent = "titleFormat=Day\nGitHub=\ntableFormat=>\nbodyFormat=# {sub}\n";
         SettingsParserImpl sut = new SettingsParserImpl(settingsFileContent);
 
-        Settings settings = sut.getParsedSettings(settingsFileContent);
+        Settings settings = sut.getParsedSettings();
 
         assertThat(settings.toString()).contains("Day","none",">","# {sub}");
     }
@@ -56,7 +56,7 @@ class SettingsParserImplTest {
         String settingsFileContent = "titleFormat=\nGitHub=none\ntableFormat=>\nbodyFormat=# {sub}\n";
         SettingsParserImpl sut = new SettingsParserImpl(settingsFileContent);
 
-        assertThatThrownBy(()->{sut.getParsedSettings(settingsFileContent);})
+        assertThatThrownBy(()->{sut.getParsedSettings();})
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("Essential Format is Empty.");
     }

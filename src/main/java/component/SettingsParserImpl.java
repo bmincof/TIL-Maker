@@ -4,13 +4,13 @@ import java.util.StringTokenizer;
 
 public class SettingsParserImpl {
 
-    private String settingsFileContent;
+    private final String settingsFileContent;
 
     public SettingsParserImpl(String settingsFileContent){
         this.settingsFileContent = settingsFileContent;
     }
 
-    public Settings getParsedSettings(String settingsFileContent){
+    public Settings getParsedSettings(){
 
         return parse(settingsFileContent);
     }
