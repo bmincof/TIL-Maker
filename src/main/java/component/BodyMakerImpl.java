@@ -3,15 +3,16 @@ package component;
 import interfaces.BodyMaker;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class BodyMakerImpl implements BodyMaker {
 
     private final String tableFormat;
     private final String contentFormat;
-    private final ArrayList<String> contentList;
+    private final LinkedList<String> contentList;
 
 
-    public BodyMakerImpl(String tableFormat, String contentFormat, ArrayList<String> contentList) {
+    public BodyMakerImpl(String tableFormat, String contentFormat, LinkedList<String> contentList) {
         this.tableFormat = tableFormat;
         this.contentFormat = contentFormat;
         this.contentList = contentList;

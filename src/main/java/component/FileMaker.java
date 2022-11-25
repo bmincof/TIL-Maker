@@ -15,7 +15,7 @@ public class FileMaker {
 
     public String makefile() {
 
-        File file = new File(directoryPath +fileName);
+        File file = new File(directoryPath, fileName);
 
         try {
             if (file.createNewFile()) {
@@ -31,7 +31,7 @@ public class FileMaker {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return "실패 : 오류 발생";
+            return "";
         }
 
     }

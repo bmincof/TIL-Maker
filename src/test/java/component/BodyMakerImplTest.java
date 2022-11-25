@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -16,7 +17,7 @@ class BodyMakerImplTest {
     public void makeBodyMaker(){
         String tableFormat = ">## [index. content]";
         String contentFormat = "# content";
-        ArrayList<String> contentList = new ArrayList<>(Arrays.asList(new String[] {"test1","test2"}));
+        LinkedList<String> contentList = new LinkedList<>(Arrays.asList(new String[] {"test1","test2"}));
         BodyMaker sut = new BodyMakerImpl(tableFormat, contentFormat, contentList);
 
         assertThat(sut).hasFieldOrPropertyWithValue("tableFormat",tableFormat)
@@ -29,7 +30,7 @@ class BodyMakerImplTest {
     public void makeContent() {
         String tableFormat = ">## [index. content]";
         String contentFormat = "# content";
-        ArrayList<String> contentList = new ArrayList<>(Arrays.asList(new String[] {"test1","test2"}));
+        LinkedList<String> contentList = new LinkedList<>(Arrays.asList(new String[] {"test1","test2"}));
         BodyMaker sut = new BodyMakerImpl(tableFormat, contentFormat, contentList);
         final String expected = "# 목차\n" +
                 ">## [1. test1](#test1)\n" +
@@ -37,7 +38,6 @@ class BodyMakerImplTest {
                 "<br>\n\n" +
                 "# test1\n\n\n" +
                 "# test2\n\n\n";
-
         final String actual = sut.makeBody();
 
         assertThat(actual).isEqualTo(expected);
@@ -48,7 +48,7 @@ class BodyMakerImplTest {
     public void makeContentWithBlank() {
         String tableFormat = ">## [index. content]";
         String contentFormat = "# content";
-        ArrayList<String> contentList = new ArrayList<>(Arrays.asList(new String[] {"test 1","test 2"}));
+        LinkedList<String> contentList = new LinkedList<>(Arrays.asList(new String[] {"test1","test2"}));
         BodyMaker sut = new BodyMakerImpl(tableFormat, contentFormat, contentList);
 
         final String expected = "# 목차\n" +

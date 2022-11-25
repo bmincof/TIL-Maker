@@ -12,7 +12,7 @@ public class ContentReader {
     private ContentReader() {
     }
 
-    public static List<String> getContents() {
+    public static LinkedList<String> getContents() {
         LinkedList<String> contents = new LinkedList<>();
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
