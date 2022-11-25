@@ -1,44 +1,37 @@
 package component;
 
-import interfaces.BodyMaker;
-
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class FileMaker {
 
-    private String pathName;
-    private String fileName;
-    private BodyMaker bodyMaker = new BodyMakerImpl(new ArrayList<>(Arrays.asList(new String[]{"test1","test2"})));
-
-    public FileMaker(String pathName, String fileName) {
-        this.pathName = pathName;
+    private final String directoryPath;
+    private final String fileName;
+    private final String body;
+    public FileMaker(String directoryPath, String fileName, String body) {
+        this.directoryPath = directoryPath;
         this.fileName = fileName;
+        this.body = body;
     }
 
     public String makefile() {
 
-        File file = new File(pathName+fileName);
+        File file = new File(directoryPath +fileName);
 
         try {
             if (file.createNewFile()) {
-                System.out.println("File created");
-
                 FileWriter fw = new FileWriter(file);
                 BufferedWriter writer = new BufferedWriter(fw);
 
-                writer.write(bodyMaker.makeBody());
+                writer.write(body);
                 writer.close();
 
-                return "success";
+                return "성공 : 파일 생성";
             } else {
-                System.out.println("File already exists");
-                return "failed";
+                return "실패 : 이미 존재하는 파일명";
             }
         } catch (IOException e) {
             e.printStackTrace();
-            return "failed";
+            return "실패 : 오류 발생";
         }
 
     }
